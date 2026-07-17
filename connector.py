@@ -5,7 +5,7 @@ import requests
 API_URL = "http://127.0.0.1:8000/analyze"
 
 # Spécifiez ici le rapport PDF que vous souhaitez analyser
-PDF_REPORT_PATH = "data/cleaned_text_pypdf.pdf" 
+PDF_REPORT_PATH = "data/CERTFR-2025-CTI-007.pdf" 
 
 
 def run_connector():

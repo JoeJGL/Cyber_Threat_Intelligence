@@ -4,10 +4,25 @@ from app.models.domain import Document, ParsedDocument, ExtractionResult
 
 
 
+class BaseTextCleanerService(ABC):
+    """Interface abstraite pour tous les services de nettoyage et normalisation de texte.
+    
+    Permet de nettoyer le texte brut extrait des documents avant de l'envoyer au NER.
+    """
 
-class BaseCleaningService(ABC):
-    pass
+    @abstractmethod
+    def clean(self, text: str) -> str:
+        """Nettoie et normalise un texte brut.
 
+        Args:
+            text (str): Le texte d'origine potentiellement bruité.
+
+        Returns:
+            str: Le texte nettoyé et prêt pour l'analyse NLP.
+        """
+        pass
+
+    
 class BaseRelationExtractorService(ABC) :
     pass
 

@@ -11,7 +11,7 @@ class PyPDFParserService(BaseParserService):
     en extrait le texte page par page et retourne un ParsedDocument.
     """
 
-    def parse(self, document: Document) -> ParsedDocument:
+    def parse(self, document: Document, path) -> ParsedDocument:
         """Extrait le texte d'un document PDF stocké en mémoire sous forme d'octets.
         
         Args:
@@ -20,10 +20,8 @@ class PyPDFParserService(BaseParserService):
         Returns:
             ParsedDocument: Le modèle contenant le texte extrait.
         """
-        # Flux de bytes en mémoire pour simuler un fichier physique requis par pypdf
-        pdf_file = io.BytesIO(document.content)
         
-        reader = PdfReader(pdf_file)
+        reader = PdfReader(path)
         extracted_text_chunks = []
 
         # Extraction page par page
@@ -31,7 +29,7 @@ class PyPDFParserService(BaseParserService):
             page_text = page.extract_text()
             if page_text:
                 extracted_text_chunks.append(page_text)
-
+                
         # Jointure des pages avec un saut de ligne
         full_text = "\n".join(extracted_text_chunks)
 
