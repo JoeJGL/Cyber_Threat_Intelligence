@@ -1,10 +1,10 @@
 # CTI NLP Pipeline – V1 (FastAPI & spaCy)
 
-A modular **Cyber Threat Intelligence (CTI)** API built with **FastAPI** and **Pydantic v2**.
+A modular **Cyber Threat Intelligence (CTI)** API built with **FastAPI** and **Pydantic**.
 
 The goal of this project is to automatically extract **Indicators of Compromise (IoCs)** and **Threat Actors** from technical PDF reports (e.g., CERT-FR reports).
 
-The pipeline follows a clean, decoupled, and extensible architecture:
+The pipeline follows a clean, decoupled (**Connectors**), and extensible architecture:
 
 ```text
 PDF Document
@@ -24,9 +24,7 @@ ExtractionResult
 
 ---
 
-# 🏗️ Architecture
-
-The main strength of this first version is its **complete separation of concerns**.
+# ⚪ Architecture
 
 The business logic (PDF parsing, text cleaning, and NLP extraction) is entirely independent of FastAPI, making every component easily testable in pure Python without starting the web server.
 
@@ -44,9 +42,11 @@ The business logic (PDF parsing, text cleaning, and NLP extraction) is entirely 
 │   │   │
 │   │   ├── parsers/
 │   │   │   ├── pdf_parser.py
-│   │   │   │   # PDF parser based on pypdf
-│   │   │   └── text_cleaner.py
-│   │   │       # Regex-based PDF layout cleaner
+│   │   │       # PDF parser based on pypdf
+│   │   │
+|   |   ├── cleaners/
+│   │   │   └── basic_text_cleaner.py
+│   │   │   
 │   │   │
 │   │   └── ner_extractors/
 │   │       └── spacy_extractor.py
@@ -69,7 +69,7 @@ The business logic (PDF parsing, text cleaning, and NLP extraction) is entirely 
 
 ---
 
-# 🚀 Installation & Setup
+# ⚪ Installation & Setup
 
 ## 1. Install Dependencies
 
@@ -147,7 +147,7 @@ The connector will:
 
 ---
 
-# 🧪 Local Testing
+# ⚪ Local Testing
 
 Each component can be validated independently without starting the API.
 
@@ -181,9 +181,9 @@ spaCy NER Extraction
 
 ---
 
-# 🔮 Roadmap — Towards Version 2
+# ⚪ Towards Version 2 : Roadmap 
 
-Version 1 provides a solid and modular foundation. Version 2 will introduce production-grade capabilities.
+Version 1 provides a modular foundation. Version 2 will introduce production-grade capabilities.
 
 ## Asynchronous Processing
 
@@ -220,8 +220,6 @@ Migration toward a cloud-ready architecture including:
 - pypdf
 - Regular Expressions (Regex)
 - Uvicorn
-- SOLID Architecture
-- Dependency Inversion Principle (DIP)
 - EntityRuler
 - JSON-based Threat Actor Dictionary
 ```
